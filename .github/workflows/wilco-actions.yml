@@ -30,6 +30,7 @@ jobs:
       - name: Use Java
         uses: actions/setup-java@v4
         with:
+          distribution: 'adopt'
           java-version: '11'
 
       - uses: oNaiPs/secrets-to-env-action@v1
