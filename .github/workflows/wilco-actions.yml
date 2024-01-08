@@ -47,3 +47,8 @@ jobs:
         uses: trywilco/actions@main
         with:
           engine: ${{ secrets.WILCO_ENGINE_URL }}
+
+      - name: Print server logs on failure
+        if: ${{ failure() }}
+        run: |
+          cat output.log
