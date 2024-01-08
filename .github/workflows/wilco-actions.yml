@@ -51,4 +51,4 @@ jobs:
       - name: Print server logs on failure
         if: ${{ failure() }}
         run: |
-          cat output.log
+          cat /tmp/output.log
