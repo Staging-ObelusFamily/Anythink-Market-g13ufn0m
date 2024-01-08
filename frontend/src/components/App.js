@@ -13,6 +13,14 @@ import Register from "./Register";
 import Settings from "./Settings";
 import { Route, Routes, useNavigate } from "react-router-dom";
 
+const isTokenExpired = (token) => {
+  const [, payload,] = token.split('.');
+  const decodedPayload = JSON.parse(atob(payload));
+  const expirationTime = decodedPayload.exp;
+  const expirationDate = new Date(expirationTime * 1000);
+  return expirationDate < new Date();
+}
+
 const mapStateToProps = (state) => {
   return {
     appLoaded: state.common.appLoaded,
@@ -39,13 +47,18 @@ const App = (props) => {
     }
   }, [redirectTo, onRedirect, navigate]);
 
+  const token = window.localStorage.getItem("jwt");
   useEffect(() => {
-    const token = window.localStorage.getItem("jwt");
     if (token) {
       agent.setToken(token);
     }
     onLoad(token ? agent.Auth.current() : null, token);
   }, [onLoad]);
+
+
+  // if (isTokenExpired(token)) {
+  //   navigate(`/login`);
+  // }
 
   if (props.appLoaded) {
     return (
