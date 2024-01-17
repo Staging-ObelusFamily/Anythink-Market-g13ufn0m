@@ -73,6 +73,7 @@ public class CommentsApi {
         .map(
             comment -> {
               if (!AuthorizationService.canWriteComment(user, item, comment)) {
+
                 throw new NoAuthorizationException();
               }
               commentRepository.remove(comment);
