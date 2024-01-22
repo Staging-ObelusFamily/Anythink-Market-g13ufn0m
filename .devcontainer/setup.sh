@@ -11,11 +11,6 @@ echo "export CODESPACE_BACKEND_HOST=\"${CODESPACE_BACKEND_HOST}\"" >> ~/.bashrc
 echo "export CODESPACE_BACKEND_URL=\"${CODESPACE_BACKEND_URL}\"" >> ~/.bashrc
 echo "export CODESPACE_WDS_SOCKET_PORT=443" >> ~/.bashrc
 
-
-# Change backend port visibility to public
-echo "(&>/dev/null .devcontainer/open_port.sh &)" >> ~/.bashrc
-
-
 # Export welcome prompt in bash:
 echo "printf \"\n\n☁️☁️☁️️ Anythink: Develop in the Cloud ☁️☁️☁️\n\"" >> ~/.bashrc
 echo "printf \"\n=============================================\n\"" >> ~/.bashrc
